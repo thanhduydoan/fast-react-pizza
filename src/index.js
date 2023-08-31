@@ -83,7 +83,7 @@ function Footer() {
     const [time, setTime] = useState(new Date().toLocaleTimeString());
     const hour = new Date().getHours();
     const openHour = 9;
-    const closeHour = 22;
+    const closeHour = 24;
     const isOpen = hour >= openHour && hour <= closeHour;
     console.log(isOpen)
     useEffect(() => {
@@ -96,17 +96,17 @@ function Footer() {
     }, [])
     return (
         <footer className="footer">
-            {isOpen ? (<Order closeHour={closeHour} />
+            {isOpen ? (<Order hour={{ openHour, closeHour }} />
             ) : (<p>The time is now: {time}</p>)}
         </footer >
     )
 }
 
-function Order({ closeHour, openHour }) {
+function Order({ hour }) {
     return (
         <div className='order'>
             <p>
-                We'are open to {openHour} from {closeHour}: 00. Come visit on us or oder online.
+                We'are open to {hour.openHour}:00 from {hour.closeHour}: 00. Come visit on us or oder online.
             </p>
             <button className="btn"> Order</button>
         </div>
